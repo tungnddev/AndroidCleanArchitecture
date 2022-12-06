@@ -1,6 +1,12 @@
 object Versions {
     const val kotlin = "1.7.20"
     const val androidPlugin = "7.3.1"
+
+    internal const val coroutines = "1.3.9"
+
+    internal const val jUnit = "4.13.2"
+    internal const val mockito = "4.8.0"
+    internal const val coroutinesTest = "1.6.4"
 }
 
 object Url {
@@ -26,10 +32,6 @@ object BuildType {
     const val proguardDebug = "proguard-rules.pro"
 }
 
-object Libs {
-
-}
-
 object Modules {
     const val domain = ":domain"
     const val data = ":data"
@@ -50,4 +52,24 @@ object GradlePlugins {
 
 object BuildPlugins {
 
+}
+
+object Namespace {
+    const val presentation = "com.greaper.androidcleanarchitecture"
+    const val domain = "com.greaper.domain"
+    const val data = "com.greaper.data"
+}
+
+object Libs {
+    //
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+
+    // junit for testing
+    const val jUnit = "junit:junit:${Versions.jUnit}"
+
+    // mockito for mocking data
+    const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
+
+    // testing coroutines
+    const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTest}"
 }
