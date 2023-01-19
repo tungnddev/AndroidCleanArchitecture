@@ -3,4 +3,5 @@ plugins {
     id(GradlePlugins.android) version Versions.androidPlugin apply false
     id(GradlePlugins.androidLib) version Versions.androidPlugin apply false
     kotlin(GradlePlugins.kotlinAndroid) version Versions.kotlin apply false
+    id(GradlePlugins.hilt) version Versions.hilt apply false
 }

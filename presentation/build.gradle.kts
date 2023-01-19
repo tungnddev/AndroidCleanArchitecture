@@ -15,6 +15,7 @@ android {
         versionCode = Android.versionCode
         versionName = Android.versionName
 
+        testInstrumentationRunner = AndroidJUnit.runner
     }
 
     buildTypes {
@@ -22,9 +23,21 @@ android {
             isMinifyEnabled = false
         }
     }
+
+    flavorDimensions += Environment.flavor
+
+    productFlavors {
+        create(Environment.development) {
+            dimension = Environment.flavor
+        }
+        create(Environment.production) {
+            dimension = Environment.flavor
+        }
+    }
 }
 
 dependencies {
+    implementation(project(Modules.data))
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("com.google.android.material:material:1.7.0")

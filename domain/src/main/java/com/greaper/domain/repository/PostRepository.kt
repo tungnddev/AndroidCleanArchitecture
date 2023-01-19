@@ -6,5 +6,4 @@ import kotlinx.coroutines.flow.Flow
 interface PostRepository : Repository {
     fun getPost() : Flow<List<Post>>
     fun getSavedPostFromLocal(): Flow<List<Post>>
-    fun getPostByUser(id: String) : Flow<List<Post>>
 }

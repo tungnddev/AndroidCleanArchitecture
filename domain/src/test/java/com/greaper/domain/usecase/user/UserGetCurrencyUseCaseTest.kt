@@ -55,6 +55,6 @@ class UserGetCurrencyUseCaseTest {
     }
 
     private fun getUserFromCountryCode(countryCode: String) : User {
-        return User("", "", countryCode)
+        return User("", "", countryCode, "")
     }
 }

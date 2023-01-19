@@ -4,4 +4,5 @@ data class User(
     var id: String,
     var name: String,
     var countryCode: String,
+    var avatar: String
 ) : Model()

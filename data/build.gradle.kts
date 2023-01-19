@@ -1,44 +1,86 @@
+import java.io.File
+import java.io.FileInputStream
+import java.util.*
+import com.android.build.api.variant.*
+
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id(GradlePlugins.androidLib)
+    kotlin(GradlePlugins.kotlinAndroid)
+    kotlin(GradlePlugins.kotlinApt)
+    id(GradlePlugins.hilt)
 }
 
 android {
-    namespace = "com.greaper.data"
-    compileSdk = 32
+    namespace = Namespace.data
+    compileSdk = Android.targetSdk
 
     defaultConfig {
-        minSdk = 24
-        targetSdk = 32
+        minSdk = Android.minSdk
+        targetSdk = Android.targetSdk
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        testInstrumentationRunner = AndroidJUnit.runner
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+    flavorDimensions += Environment.flavor
+
+    productFlavors {
+        create(Environment.development) {
+            dimension = Environment.flavor
+        }
+        create(Environment.production) {
+            dimension = Environment.flavor
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+    sourceSets {
+        getByName("main") {
+            resources {
+                srcDirs("src\\main\\resources", "src\\test\\resources")
+            }
+        }
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
+
+}
+
+androidComponents {
+    onVariants { variant ->
+        val flavor = variant.flavorName
+        // To check for a certain build type, use variant.buildType.name == "<buildType>"
+        val envProperties = Properties()
+        val envPropertiesFile = File("$rootDir/data/$flavor.properties")
+        if (envPropertiesFile.exists()) {
+            envProperties.load(FileInputStream(envPropertiesFile))
+        }
+        variant.buildConfigFields.put(
+            "API_ENDPOINT",
+            BuildConfigField("String", envProperties.getProperty("apiEndpoint"), null)
+        )
+        variant.manifestPlaceholders.put("scheme", envProperties.getProperty("appScheme"))
     }
 }
 
 dependencies {
+    implementation(project(Modules.domain))
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    implementation(Libs.hiltAndroid)
+    kapt(Libs.hiltCompiler)
+
+    implementation(Libs.retrofit)
+    implementation(Libs.retrofitGson)
+    implementation(Libs.okLogging)
+
+    implementation(Libs.roomRuntime)
+    kapt(Libs.roomCompiler)
+    implementation(Libs.roomKotlin)
+
+    implementation(Libs.coroutinesAndroid)
+    testImplementation(Libs.coroutinesTest)
+
+    implementation(Libs.timber)
+
+    testImplementation(Libs.jUnit)
+    testImplementation(Libs.mockito)
+    testImplementation(Libs.robolectric)
+    testImplementation(Libs.robolectricAndroidXEnv)
+    testImplementation(Libs.mockWebserver)
+
 }
