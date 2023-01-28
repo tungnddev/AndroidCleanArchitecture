@@ -1,6 +1,4 @@
-package com.example.cleanarchitecture.domain.exception
-
-import com.greaper.domain.exception.ExceptionType
+package com.greaper.domain.exception
 
 open class CleanException(
     open val code: Int,

@@ -11,6 +11,7 @@ android {
 
 dependencies {
     implementation(Libs.coroutinesAndroid)
+    implementation(Libs.retrofitGson)
     testImplementation(Libs.coroutinesTest)
     testImplementation(Libs.jUnit)
     testImplementation(Libs.mockito)

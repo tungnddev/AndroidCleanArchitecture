@@ -4,6 +4,7 @@ import com.greaper.data.local.pref.PrefHelper
 import com.greaper.data.model.entity.TokenEntity
 import com.greaper.data.remote.builder.RetrofitBuilder
 import com.greaper.data.remote.interceptor.HeaderInterceptor
+import com.greaper.data.utils.TestUtil
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
@@ -31,8 +32,8 @@ abstract class BaseApiTest<T : Any> {
         Mockito.`when`(prefHelper.getToken())
             .thenReturn(
                 TokenEntity(
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ",
+                    TestUtil.ACCESS_TOKEN,
+                    TestUtil.REFRESH_TOKEN,
                 )
             )
         return prefHelper

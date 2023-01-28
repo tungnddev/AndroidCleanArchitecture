@@ -22,16 +22,11 @@ class PostApiTest : BaseApiTest<PostApi>() {
         val path = "/posts?page=$page&limit=$limit"
         val mockResponse = MockResponse()
             .setBody(getJson("post/get-post.json"))
-
-        // Enqueue request
         mockServer.enqueue(mockResponse)
-
-        // Call API
         val dto = apiService.getPosts(page, limit)
 
-        // get request to test
         val request = mockServer.takeRequest()
-        assertEquals(request.path, path)
+        assertEquals(path, request.path)
         assertEquals(1, dto.size)
         assertEquals(
             TestUtil.LOREM_STRING,
@@ -46,16 +41,12 @@ class PostApiTest : BaseApiTest<PostApi>() {
         val path = "/posts?page=$page&limit=$limit"
         val mockResponse = MockResponse()
             .setBody("[]")
-
-        // Enqueue request
         mockServer.enqueue(mockResponse)
-
-        // Call API
         val dto = apiService.getPosts(page, limit)
 
         // get request to test
         val request = mockServer.takeRequest()
-        assertEquals(request.path, path)
+        assertEquals(path, request.path)
         assertEquals(0, dto.size)
     }
 
@@ -66,16 +57,11 @@ class PostApiTest : BaseApiTest<PostApi>() {
         val path = "/posts?page=$page&limit=$limit"
         val mockResponse = MockResponse()
             .setBody("[{}]")
-
-        // Enqueue request
         mockServer.enqueue(mockResponse)
-
-        // Call API
         val dto = apiService.getPosts(page, limit)
 
-        // get request to test
         val request = mockServer.takeRequest()
-        assertEquals(request.path, path)
+        assertEquals(path, request.path)
         assertEquals(1, dto.size)
         assertEquals(
             null,

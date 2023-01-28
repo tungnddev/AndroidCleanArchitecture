@@ -1,8 +1,8 @@
 package com.greaper.data.remote.builder
 
-import android.content.Context
 import com.greaper.data.BuildConfig
 import com.greaper.data.HttpClient
+import com.greaper.data.remote.factory.NetworkResponseAdapterFactory
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Interceptor
@@ -61,6 +61,7 @@ class RetrofitBuilder @Inject constructor() {
             .baseUrl(baseHttpUrl)
             .client(clientBuilder.build())
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .build()
     }
 }

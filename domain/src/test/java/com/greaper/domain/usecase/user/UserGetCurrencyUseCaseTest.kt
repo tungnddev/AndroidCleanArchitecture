@@ -28,33 +28,33 @@ class UserGetCurrencyUseCaseTest {
 
     @Test
     fun invoke_WithVNCountryCode() = runTest {
-        `when`(userRepository.getCacheUser()).thenReturn(flowOf(getUserFromCountryCode("VN")))
+        `when`(userRepository.getCacheUser()).thenReturn(getUserFromCountryCode("VN"))
         val currency = userGetCurrencyUseCase().first()
         assertEquals("VND", currency)
     }
 
     @Test
     fun invoke_WithUSCountryCode() = runTest {
-        `when`(userRepository.getCacheUser()).thenReturn(flowOf(getUserFromCountryCode("US")))
+        `when`(userRepository.getCacheUser()).thenReturn(getUserFromCountryCode("US"))
         val currency = userGetCurrencyUseCase().first()
         assertEquals("USD", currency)
     }
 
     @Test
     fun invoke_WithNotFoundCountryCode() = runTest {
-        `when`(userRepository.getCacheUser()).thenReturn(flowOf(getUserFromCountryCode("ABC")))
+        `when`(userRepository.getCacheUser()).thenReturn(getUserFromCountryCode("ABC"))
         val currency = userGetCurrencyUseCase().first()
         assertEquals("", currency)
     }
 
     @Test
     fun invoke_WithEmptyCode() = runTest {
-        `when`(userRepository.getCacheUser()).thenReturn(flowOf(getUserFromCountryCode("")))
+        `when`(userRepository.getCacheUser()).thenReturn(getUserFromCountryCode(""))
         val currency = userGetCurrencyUseCase().first()
         assertEquals("", currency)
     }
 
-    private fun getUserFromCountryCode(countryCode: String) : User {
+    private fun getUserFromCountryCode(countryCode: String): User {
         return User("", "", countryCode, "")
     }
 }

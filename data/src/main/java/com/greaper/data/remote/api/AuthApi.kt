@@ -1,9 +1,12 @@
 package com.greaper.data.remote.api
 
 import com.greaper.data.model.dto.TokenDto
-import retrofit2.http.GET
+import com.greaper.data.remote.factory.RetrofitResponse
+import com.greaper.domain.model.LoginUser
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface AuthApi {
-    @GET("/login")
-    suspend fun login(email: String, password: String): TokenDto
+    @POST("/login")
+    suspend fun login(@Body body: LoginUser): RetrofitResponse<TokenDto>
 }

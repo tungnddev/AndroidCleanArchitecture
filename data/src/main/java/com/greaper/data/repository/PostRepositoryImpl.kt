@@ -1,4 +1,4 @@
-package com.greaper.data
+package com.greaper.data.repository
 
 import com.greaper.data.local.db.AppDatabase
 import com.greaper.data.remote.api.PostApi
