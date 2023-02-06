@@ -2,7 +2,7 @@ package com.greaper.data.remote.builder
 
 import com.greaper.data.BuildConfig
 import com.greaper.data.HttpClient
-import com.greaper.data.remote.factory.NetworkResponseAdapterFactory
+import com.greaper.data.remote.factory.CustomCallAdapterFactory
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Interceptor
@@ -61,7 +61,7 @@ class RetrofitBuilder @Inject constructor() {
             .baseUrl(baseHttpUrl)
             .client(clientBuilder.build())
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(NetworkResponseAdapterFactory())
+            .addCallAdapterFactory(CustomCallAdapterFactory())
             .build()
     }
 }

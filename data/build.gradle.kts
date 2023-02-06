@@ -76,6 +76,7 @@ dependencies {
     testImplementation(Libs.coroutinesTest)
 
     implementation(Libs.timber)
+    implementation(Libs.paging)
 
     testImplementation(Libs.jUnit)
     testImplementation(Libs.mockito)

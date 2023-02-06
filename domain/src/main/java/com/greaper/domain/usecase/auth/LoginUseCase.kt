@@ -12,4 +12,5 @@ class LoginUseCase(
         authRepository.login(loginUser)
         val user = userRepository.getUser()
         userRepository.saveCacheUser(user)
-    } }
+    }
+}

@@ -12,6 +12,7 @@ android {
 dependencies {
     implementation(Libs.coroutinesAndroid)
     implementation(Libs.retrofitGson)
+    implementation(Libs.paging)
     testImplementation(Libs.coroutinesTest)
     testImplementation(Libs.jUnit)
     testImplementation(Libs.mockito)

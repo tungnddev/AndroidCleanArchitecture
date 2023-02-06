@@ -26,8 +26,16 @@ class PostDaoTest : BaseDaoTest() {
     fun writePostAndReadInList() = runTest {
         val post = createPostEntity("1")
         postDao.insert(post)
-        val data = postDao.findById("1").first()
+        val data = postDao.findById("1")
         Assert.assertEquals(post, data)
+    }
+
+    @Test
+    fun getAll() = runTest {
+        val post = createPostEntity("1")
+        postDao.insert(post)
+        val data = postDao.getAll()
+        Assert.assertEquals(1, data.size)
     }
 
 
@@ -36,7 +44,7 @@ class PostDaoTest : BaseDaoTest() {
         val post = createPostEntity("1")
         postDao.insert(post)
         postDao.deleteById("1")
-        val data = postDao.findById("1").first()
+        val data = postDao.findById("1")
         Assert.assertEquals(null, data)
     }
 
@@ -46,7 +54,7 @@ class PostDaoTest : BaseDaoTest() {
         postDao.insert(post)
         val newPost = createPostEntityUpdated("1")
         postDao.update(newPost)
-        val data = postDao.findById("1").first()
+        val data = postDao.findById("1")
         Assert.assertEquals(newPost, data)
     }
 

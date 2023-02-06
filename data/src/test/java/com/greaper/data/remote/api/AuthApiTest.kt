@@ -1,7 +1,6 @@
 package com.greaper.data.remote.api
 
 import com.google.gson.Gson
-import com.greaper.data.remote.factory.NetworkResponse
 import com.greaper.data.utils.TestUtil
 import com.greaper.domain.model.LoginUser
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,7 +24,7 @@ class AuthApiTest : BaseApiTest<AuthApi>() {
         val mockResponse = MockResponse()
             .setBody(TestUtil.getJson("auth/login.json"))
         mockServer.enqueue(mockResponse)
-        val response = apiService.login(LoginUser(email, password))
+        val dto = apiService.login(LoginUser(email, password))
 
         val request = mockServer.takeRequest()
         val body = Gson().fromJson(request.body.readUtf8(), MutableMap::class.java)
@@ -33,26 +32,9 @@ class AuthApiTest : BaseApiTest<AuthApi>() {
         assertEquals("POST", request.method)
         assertEquals(email, body["email"])
         assertEquals(password, body["password"])
-        assertEquals(true, response is NetworkResponse.Success)
-        assertEquals(TestUtil.ACCESS_TOKEN, (response as NetworkResponse.Success).body.accessToken)
-//        assertEquals(TestUtil.REFRESH_TOKEN, dto.refreshToken)
-//        when(response) {
-//            is NetworkResponse.NetworkError -> {
-//
-//            }
-//            is NetworkResponse.ServerError -> {
-//
-//            }
-//            is NetworkResponse.UnknownError -> {
-//
-//            }
-//            is NetworkResponse.Success -> {
-//                response.body
-//            }
-//        }
 
-//        assertEquals(TestUtil.ACCESS_TOKEN, dto.accessToken)
-//        assertEquals(TestUtil.REFRESH_TOKEN, dto.refreshToken)
+        assertEquals(TestUtil.ACCESS_TOKEN, dto.accessToken)
+        assertEquals(TestUtil.REFRESH_TOKEN, dto.refreshToken)
     }
 
 }

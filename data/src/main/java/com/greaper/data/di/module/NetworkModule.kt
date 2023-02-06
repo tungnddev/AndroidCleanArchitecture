@@ -1,6 +1,7 @@
 package com.greaper.data.di.module
 
 import android.content.Context
+import com.greaper.data.remote.api.AuthApi
 import com.greaper.data.remote.api.PostApi
 import com.greaper.data.remote.api.UserApi
 import com.greaper.data.remote.interceptor.HeaderInterceptor
@@ -34,9 +35,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideUsersApi(retrofit: Retrofit): PostApi = retrofit.create(PostApi::class.java)
+    fun providePostApi(retrofit: Retrofit): PostApi = retrofit.create(PostApi::class.java)
 
     @Provides
     @Singleton
-    fun provideItemsApi(retrofit: Retrofit): UserApi = retrofit.create(UserApi::class.java)
+    fun provideUserApi(retrofit: Retrofit): UserApi = retrofit.create(UserApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
 }

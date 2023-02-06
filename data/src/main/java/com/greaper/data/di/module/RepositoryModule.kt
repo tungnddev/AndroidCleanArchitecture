@@ -7,6 +7,8 @@ import com.greaper.data.Constants
 import com.greaper.data.repository.PostRepositoryImpl
 import com.greaper.data.repository.UserRepositoryImpl
 import com.greaper.data.di.DatabaseInfo
+import com.greaper.data.repository.AuthRepositoryImpl
+import com.greaper.domain.repository.AuthRepository
 import com.greaper.domain.repository.PostRepository
 import com.greaper.domain.repository.UserRepository
 import dagger.Module
@@ -42,6 +44,12 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun providerItemRepository(repository: PostRepositoryImpl): PostRepository {
+        return repository
+    }
+
+    @Provides
+    @Singleton
+    fun providerAuthRepository(repository: AuthRepositoryImpl): AuthRepository {
         return repository
     }
 }

@@ -18,6 +18,8 @@ object Versions {
     internal const val testRunner = "1.5.1"
     internal const val robolectric = "4.9"
     internal const val robolectricAndroidXEnv = "1.5.0"
+    internal const val paging = "3.1.1"
+    internal const val pagingCompose = "1.0.0-alpha17"
 }
 
 object Url {
@@ -121,4 +123,8 @@ object Libs {
     // robolectric for testing
     const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
     const val robolectricAndroidXEnv = "androidx.test:core:${Versions.robolectricAndroidXEnv}"
+
+    // paging for paginate
+    const val paging = "androidx.paging:paging-runtime:${Versions.paging}"
+    const val pagingComposeExt = "androidx.paging:paging-compose:${Versions.pagingCompose}"
 }
