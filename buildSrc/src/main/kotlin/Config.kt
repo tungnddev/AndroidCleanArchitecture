@@ -2,6 +2,7 @@ object Versions {
     const val kotlin = "1.7.20"
     const val androidPlugin = "7.3.1"
     const val hilt = "2.44.2"
+    const val composeCompiler = "1.3.2"
 
     internal const val coroutines = "1.3.9"
     internal const val retrofit = "2.9.0"
@@ -20,6 +21,8 @@ object Versions {
     internal const val robolectricAndroidXEnv = "1.5.0"
     internal const val paging = "3.1.1"
     internal const val pagingCompose = "1.0.0-alpha17"
+    internal const val composeBom = "2022.12.00"
+    internal const val navigation = "2.5.3"
 }
 
 object Url {
@@ -80,7 +83,7 @@ object BuildPlugins {
 }
 
 object Namespace {
-    const val presentation = "com.greaper.androidcleanarchitecture"
+    const val presentation = "com.greaper.presentation"
     const val domain = "com.greaper.domain"
     const val data = "com.greaper.data"
 }
@@ -127,4 +130,15 @@ object Libs {
     // paging for paginate
     const val paging = "androidx.paging:paging-runtime:${Versions.paging}"
     const val pagingComposeExt = "androidx.paging:paging-compose:${Versions.pagingCompose}"
+
+    // compose UI
+    const val composeBom = "androidx.compose:compose-bom:${Versions.composeBom}"
+    const val composeMaterial = "androidx.compose.material:material"
+    const val composePreview = "androidx.compose.ui:ui-tooling-preview"
+    const val composeUITooling = "androidx.compose.ui:ui-tooling"
+
+    // navigation
+    const val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigation}"
+    const val navigationUI = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    const val navigationCompose = "androidx.navigation:navigation-compose:${Versions.navigation}"
 }

@@ -2,10 +2,11 @@ plugins {
     id(GradlePlugins.android)
     kotlin(GradlePlugins.kotlinAndroid)
     kotlin(GradlePlugins.kotlinApt)
+    id(GradlePlugins.hilt)
 }
 
 android {
-    namespace = Android.applicationId
+    namespace = Namespace.presentation
     compileSdk = Android.targetSdk
 
     defaultConfig {
@@ -34,14 +35,37 @@ android {
             dimension = Environment.flavor
         }
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
+    }
 }
 
 dependencies {
     implementation(project(Modules.data))
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+
+    implementation(Libs.hiltAndroid)
+    kapt(Libs.hiltCompiler)
+
+    implementation(Libs.coroutinesAndroid)
+    testImplementation(Libs.coroutinesTest)
+
+    implementation(Libs.paging)
+
+    testImplementation(Libs.jUnit)
+    testImplementation(Libs.jUnitExtension)
+
+    implementation(platform(Libs.composeBom))
+    androidTestImplementation(platform(Libs.composeBom))
+    implementation(Libs.composeMaterial)
+    implementation(Libs.composePreview)
+    debugImplementation(Libs.composeUITooling)
+
+    implementation(Libs.navigationFragment)
+    implementation(Libs.navigationUI)
+    implementation(Libs.navigationCompose)
 }

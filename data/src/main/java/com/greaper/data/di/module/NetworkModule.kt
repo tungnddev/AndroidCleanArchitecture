@@ -20,9 +20,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofitBuilder(
-        @ApplicationContext mContext: Context,
-    ): RetrofitBuilder = RetrofitBuilder()
+    fun provideRetrofitBuilder(): RetrofitBuilder = RetrofitBuilder()
 
     @Provides
     @Singleton
