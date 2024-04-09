@@ -1,8 +1,8 @@
 object Versions {
-    const val kotlin = "1.7.20"
+    const val kotlin = "1.8.21"
     const val androidPlugin = "7.3.1"
     const val hilt = "2.44.2"
-    const val composeCompiler = "1.3.2"
+    const val composeCompiler = "1.4.7"
 
     internal const val coroutines = "1.3.9"
     internal const val retrofit = "2.9.0"
@@ -19,7 +19,7 @@ object Versions {
     internal const val testRunner = "1.5.1"
     internal const val robolectric = "4.9"
     internal const val robolectricAndroidXEnv = "1.5.0"
-    internal const val paging = "3.1.1"
+    internal const val paging = "3.2.1"
     internal const val pagingCompose = "1.0.0-alpha17"
     internal const val composeBom = "2022.12.00"
     internal const val navigation = "2.5.3"

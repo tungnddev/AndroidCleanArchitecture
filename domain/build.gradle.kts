@@ -7,6 +7,11 @@ plugins {
 android {
     namespace = Namespace.domain
     compileSdk = Android.targetSdk
+
+    defaultConfig {
+        minSdk = Android.minSdk
+        targetSdk = Android.targetSdk
+    }
 }
 
 dependencies {
